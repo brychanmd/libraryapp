@@ -6,6 +6,54 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<div class="container-fluid">
 
+			<header>
+				<div class="container">
+					<h1 class="text-primary">Llyfrgell Y Wê</h1>
+				</div>
+			</header>
+
+			<div class="container">
+
+				<div id="form-container">
+					<h3>Submit a new book here</h3>
+
+					<form>
+						<div class="form-group">
+							<label for="book-title">Title:</label><br>
+							<input type="text" class="form-control" name="title" id="book-title">
+						</div>
+						<div class="form-group">
+							<label for="book-author">Author:</label><br>
+							<input type="text" class="form-control" name="author" id="book-author">
+						</div>
+						<div class="form-group">
+							<label>Number of pages:</label><br>
+							<input type="text" class="form-control" name="pages" id="book-pages">
+						</div>
+						<div class="form-group">
+							<label for="book-read">Read:</label><br>
+
+							<div class="form-check">
+								<input type="radio" class="form-check-input" name="read" id="book-read" value="Yes">
+								<label class="form-check-label" for="book-read">
+									Yes
+								</label>
+								<br>
+								<input type="radio" class="form-check-input" name="read" id="book-not-read" value="No">
+								<label class="form-check-label" for="book-not-read">
+									No
+								</label> 
+							</div>
+						</div>
+						<input type="button" value="Submit" id="formSubmit" class="btn btn-primary" onclick="submitForm()">
+					</form>
+				</div>
+
+				<div id="main-feed" class="row"></div>
+			</div>
+
+		</div>
 	</body>	
 </html>
