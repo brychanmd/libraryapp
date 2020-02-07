@@ -1,25 +1,10 @@
-const mainFeed = document.getElementById('main-feed');
+let myLibrary = [];
 
-let myLibrary = [
-	{
-		title : "Homage to Catalonia",
-		author : "George Orwell",
-		pages : 324,
-		readStatus : true,
-	},
-	{
-		title : "Rape of the fair Country",
-		author : "Alexander Cordell",
-		pages : 195,
-		readStatus : true,
-	},
-	{
-		title : "Freakonomics",
-		author : "",
-		pages : 230,
-		readStatus : false,
-	}
-];
+const mainFeed = document.getElementById('main-feed');
+const mainForm = document.getElementsByName('submitBook')[0];
+
+
+render();
 
 function Book(title, author, pages, readStatus) {
 	this.title = title;
@@ -31,13 +16,44 @@ function Book(title, author, pages, readStatus) {
 function addBookToLibrary(title, author, pages, readStatus) {
 	let newBook = new Book(title, author, pages, readStatus);
 	myLibrary.push(newBook);
+	render();
 }
+
+function removeBookFromLibrary(index) {
+	myLibrary.splice(index, 1);
+	render();
+}
+
+function toggleRead(index) {
+	myLibrary[index]['readStatus'] = !myLibrary[index]['readStatus'];
+	render();
+}
+
+function submitForm() {
+	let title = document.getElementById('book-title').value;
+	let author = document.getElementById('book-author').value;
+	let pages = document.getElementById('book-pages').value;
+	let readStatus;
+	if(document.getElementById('book-read').checked) {
+		readStatus = true;
+	  }else if(document.getElementById('book-not-read').checked) {
+		readStatus = false;
+	  }
+
+	addBookToLibrary(title, author, pages, readStatus);
+
+	mainForm.reset();
+	return false;
+}
+
 
 function render() {
 
+	mainFeed.innerHTML = '';
+
 	for (let i = 0; i < myLibrary.length; i++) {
 		let div = document.createElement('div');
-		div.setAttribute('class', 'col-sm-6');
+		div.setAttribute('class', 'col-sm-6 col-md-4');
 		div.innerHTML = `
 			<div class="card">
 				<div class="card-body">
@@ -47,10 +63,28 @@ function render() {
 						<li>Pages: ${myLibrary[i].pages}</li>
 						<li>Status: ${ (myLibrary[i].readStatus) ? 'Read' : 'Not read' }</li>
 					</ul>
-					<a href="#" class="btn btn-primary">Remove book</a>
+					<div class="dflex justify-content-between">
+
+					<div class="btn btn-success toggleRead" data-index="${i}">${ (myLibrary[i].readStatus) ? 'Mark as unread' : 'Mark as read' }</div>
+					<div class="btn btn-danger remove-btn" data-index="${i}">Remove book</div>
+					</div>
 				</div>
 			</div>
 		`;
-		mainFeed.appendChild(div);
+		mainFeed.appendChild(div);	
 	}
+
+			const removeBtns = document.querySelectorAll('.remove-btn');
+			removeBtns.forEach( (button) => {
+				button.addEventListener('click', (e) => {
+					removeBookFromLibrary(e.target.dataset.index);
+				});
+			});
+
+			const toggleReadBtns = document.querySelectorAll('.toggleRead');
+			toggleReadBtns.forEach( (button) => {
+				button.addEventListener('click', (e) => {
+					toggleRead(e.target.dataset.index);
+				});
+			});
 }

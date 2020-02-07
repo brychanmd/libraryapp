@@ -7,8 +7,13 @@ ul, li {
 .card{
 	padding: 10px;
 	margin-top: 15px;
+	/* min-height: 100%; */
 }
 
 #form-container{
 	margin-top: 20px;
+}
+
+.btn{
+	margin-top: 2px;
 }
