@@ -65,7 +65,7 @@ function render() {
 					</ul>
 					<div class="dflex justify-content-between">
 
-					<div class="btn btn-success toggleRead" data-index="${i}">${ (myLibrary[i].readStatus) ? 'Mark as unread' : 'Mark as read' }</div>
+					<div class="btn btn-${ (myLibrary[i].readStatus) ? 'secondary' : 'success' } toggleRead" data-index="${i}">${(myLibrary[i].readStatus) ? 'Mark as unread' : 'Mark as read'}</div>
 					<div class="btn btn-danger remove-btn" data-index="${i}">Remove book</div>
 					</div>
 				</div>
