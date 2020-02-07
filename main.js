@@ -1,4 +1,11 @@
-let myLibrary = [];
+var myLibrary = [];
+
+if(!localStorage.getItem('myLibArray')) {
+	localStorage.setItem('myLibArray', JSON.stringify(myLibrary));
+  } else {
+	var obj = localStorage.getItem('myLibArray');
+	myLibrary =  JSON.parse(obj);
+  }
 
 const mainFeed = document.getElementById('main-feed');
 const mainForm = document.getElementsByName('submitBook')[0];
@@ -16,16 +23,19 @@ function Book(title, author, pages, readStatus) {
 function addBookToLibrary(title, author, pages, readStatus) {
 	let newBook = new Book(title, author, pages, readStatus);
 	myLibrary.push(newBook);
+	localStorage.setItem('myLibArray', JSON.stringify(myLibrary));
 	render();
 }
 
 function removeBookFromLibrary(index) {
 	myLibrary.splice(index, 1);
+	localStorage.setItem('myLibArray', JSON.stringify(myLibrary));
 	render();
 }
 
 function toggleRead(index) {
 	myLibrary[index]['readStatus'] = !myLibrary[index]['readStatus'];
+	localStorage.setItem('myLibArray', JSON.stringify(myLibrary));
 	render();
 }
 
