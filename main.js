@@ -61,9 +61,9 @@ function render() {
 
 	mainFeed.innerHTML = '';
 
-	for (let i = 0; i < myLibrary.length; i++) {
+	for (let i = myLibrary.length-1; i >= 0; i--) {
 		let div = document.createElement('div');
-		div.setAttribute('class', 'col-sm-6 col-md-4');
+		div.setAttribute('class', 'col-sm-6 col-md-4 ');
 		div.innerHTML = `
 			<div class="card">
 				<div class="card-body">
@@ -75,8 +75,8 @@ function render() {
 					</ul>
 					<div class="dflex justify-content-between">
 
-					<div class="btn btn-${ (myLibrary[i].readStatus) ? 'secondary' : 'success' } toggleRead" data-index="${i}">${(myLibrary[i].readStatus) ? 'Mark as unread' : 'Mark as read'}</div>
-					<div class="btn btn-danger remove-btn" data-index="${i}">Remove book</div>
+					<div class="btn btn-outline-${ (myLibrary[i].readStatus) ? 'secondary' : 'success' } toggleRead card-button" data-index="${i}">${(myLibrary[i].readStatus) ? 'Mark as unread' : 'Mark as read'}</div>
+					<div class="btn btn-outline-danger remove-btn card-button" data-index="${i}">Remove book</div>
 					</div>
 				</div>
 			</div>

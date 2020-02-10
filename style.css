@@ -1,3 +1,13 @@
+html, body{
+	padding: 20px;;
+	/* background-image: linear-gradient(to right bottom, #ca97df, #a67bc8, #8160b2, #5a479c, #2c3087); */
+	color: white;
+	font-family: monospace;
+	background-image: url("llyfrgell.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 ul, li {
 	margin-left: 0; 
 	padding-left: 0;
@@ -8,7 +18,19 @@ ul, li {
 	padding: 10px;
 	margin-top: 15px;
 	/* min-height: 100%; */
+	color: white;
+	background-color: rgba(32, 32, 32, 0.8);
+	font-family: sans-serif;
 }
+#form-container{
+	display: flex;
+	justify-content: center;
+}
+#form-toggle-btn{
+	margin: 25px 0px;
+	width: 100%;
+}
+
 
 #form-container{
 	margin-top: 20px;
@@ -16,4 +38,21 @@ ul, li {
 
 .btn{
 	margin-top: 2px;
+}
+#formSubmit{
+	width: 100%;
+}
+.card-button{
+	width: 100%;
+}
+.form-check{
+	display: flex;
+}
+.form-checkbox{
+	margin-right: 30px;
+}
+h1{
+	font-size: 55px;
+	margin: auto;
+	text-align: center;
 }
