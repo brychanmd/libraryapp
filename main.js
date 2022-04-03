@@ -10,19 +10,19 @@ if(!localStorage.getItem('myLibArray')) {
 const mainFeed = document.getElementById('main-feed');
 const mainForm = document.getElementsByName('submitBook')[0];
 
+class Book {
 
-render();
+    constructor( title, author, pages, readStatus ) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.readStatus = readStatus;
+    }
 
-function Book(title, author, pages, readStatus) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.readStatus = readStatus;
 }
 
-function addBookToLibrary(title, author, pages, readStatus) {
-	let newBook = new Book(title, author, pages, readStatus);
-	myLibrary.push(newBook);
+function addBookToLibrary( book ) {
+	myLibrary.push( book );
 	localStorage.setItem('myLibArray', JSON.stringify(myLibrary));
 	render();
 }
@@ -50,7 +50,9 @@ function submitForm() {
 		readStatus = false;
 	  }
 
-	addBookToLibrary(title, author, pages, readStatus);
+    let newBook = new Book( title, author, pages, readStatus );
+
+	addBookToLibrary( newBook );
 
 	mainForm.reset();
 	return false;
@@ -84,17 +86,19 @@ function render() {
 		mainFeed.appendChild(div);	
 	}
 
-			const removeBtns = document.querySelectorAll('.remove-btn');
-			removeBtns.forEach( (button) => {
-				button.addEventListener('click', (e) => {
-					removeBookFromLibrary(e.target.dataset.index);
-				});
-			});
+    const removeBtns = document.querySelectorAll('.remove-btn');
+    removeBtns.forEach( (button) => {
+        button.addEventListener('click', (e) => {
+            removeBookFromLibrary(e.target.dataset.index);
+        });
+    });
 
-			const toggleReadBtns = document.querySelectorAll('.toggleRead');
-			toggleReadBtns.forEach( (button) => {
-				button.addEventListener('click', (e) => {
-					toggleRead(e.target.dataset.index);
-				});
-			});
+    const toggleReadBtns = document.querySelectorAll('.toggleRead');
+    toggleReadBtns.forEach( (button) => {
+        button.addEventListener('click', (e) => {
+            toggleRead(e.target.dataset.index);
+        });
+    });
 }
+
+render();
